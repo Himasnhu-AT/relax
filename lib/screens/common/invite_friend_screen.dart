@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'app_theme.dart';
+import 'package:relax/constants/app_theme.dart';
 
 class InviteFriend extends StatefulWidget {
   const InviteFriend({super.key});
