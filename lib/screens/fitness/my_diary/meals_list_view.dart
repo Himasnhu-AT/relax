@@ -92,6 +92,10 @@ class MealsView extends StatelessWidget {
       this.animationController,
       this.animation});
 
+  Color hexToColor(String code) {
+    return Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
+  }
+
   final MealsListData? mealsListData;
   final AnimationController? animationController;
   final Animation<double>? animation;
@@ -114,23 +118,23 @@ class MealsView extends StatelessWidget {
                     padding: const EdgeInsets.only(
                         top: 32, left: 8, right: 8, bottom: 16),
                     child: Container(
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         boxShadow: <BoxShadow>[
                           BoxShadow(
-                              // color: HexColor(mealsListData!.endColor)
-                              //     .withOpacity(0.6),
-                              offset: Offset(1.1, 4.0),
+                              color: hexToColor(mealsListData!.endColor)
+                                  .withOpacity(0.6),
+                              offset: const Offset(1.1, 4.0),
                               blurRadius: 8.0),
                         ],
-                        // gradient: LinearGradient(
-                        //   // colors: <HexColor>[
-                        //   //   HexColor(mealsListData!.startColor),
-                        //   //   HexColor(mealsListData!.endColor),
-                        //   // ],
-                        //   begin: Alignment.topLeft,
-                        //   end: Alignment.bottomRight,
-                        // ),
-                        borderRadius: BorderRadius.only(
+                        gradient: LinearGradient(
+                          colors: [
+                            hexToColor(mealsListData!.startColor),
+                            hexToColor(mealsListData!.endColor),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: const BorderRadius.only(
                           bottomRight: Radius.circular(8.0),
                           bottomLeft: Radius.circular(8.0),
                           topLeft: Radius.circular(8.0),
@@ -222,11 +226,12 @@ class MealsView extends StatelessWidget {
                                             blurRadius: 8.0),
                                       ],
                                     ),
-                                    child: const Padding(
-                                      padding: EdgeInsets.all(6.0),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(6.0),
                                       child: Icon(
                                         Icons.add,
-                                        // color: HexColor(mealsListData!.endColor),
+                                        color:
+                                            hexToColor(mealsListData!.endColor),
                                         size: 24,
                                       ),
                                     ),
